@@ -4,9 +4,13 @@ import { useSession, signIn, signOut, getSession } from "next-auth/react";
 import CardContainer from "../components/CardContainer";
 import styles from "../styles/Home.module.css";
 import getToken from "../pages/api/get-token-example";
+import SignIn from "../components/SignIn";
+import AdminCheck from "../components/AdminCheck";
+import react from "react";
 
 export default function Home() {
   const { data: session } = useSession();
+  let isAdmin = false;
 
   if (session) {
     return (
@@ -15,16 +19,17 @@ export default function Home() {
           <title>🍌 Banana Stand</title>
           <meta
             name="🍌 Banana Stand"
-            content="There is always money in the banana stand"
+            content="There's always money in the banana stand"
           />
         </Head>
 
         <main className={styles.main}>
           <h1 className={styles.title}>Welcome to the Banana Stand</h1>
           <p className={styles.description}>Signed in as {session.user.name}</p>
-          {/* <button onClick={() => console.log(session.user)}>Token</button> */}
-          <button onClick={() => signOut()}>Sign Out</button>
-          <CardContainer content="auth" />
+          <button onClick={() => console.log(session.user)}>Token</button>
+          {(isAdmin = <AdminCheck email={session.user.email} />)}
+          <CardContainer content="auth" admin={isAdmin} />
+          <SignIn content="auth" />
         </main>
       </div>
     );
@@ -36,15 +41,15 @@ export default function Home() {
         <title>🍌 Banana Stand</title>
         <meta
           name="🍌 Banana Stand"
-          content="There is always money in the banana stand"
+          content="There's always money in the banana stand"
         />
       </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>Welcome to the Banana Stand</h1>
         <p className={styles.description}>Where would you like to go next?</p>
-        <button onClick={() => signIn()}>Sign In</button>
         <CardContainer content="noAuth" />
+        <SignIn content="noAuth" />
       </main>
     </div>
   );
