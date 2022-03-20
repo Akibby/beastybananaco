@@ -26,7 +26,6 @@ export default function Home() {
         <main className={styles.main}>
           <h1 className={styles.title}>Welcome to the Banana Stand</h1>
           <p className={styles.description}>Signed in as {session.user.name}</p>
-          <button onClick={() => console.log(session.user)}>Token</button>
           {(isAdmin = <AdminCheck email={session.user.email} />)}
           <CardContainer content="auth" admin={isAdmin} />
           <SignIn content="auth" />
