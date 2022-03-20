@@ -18,6 +18,13 @@ const CardContainer = (props) => {
       title: "Request",
       description: "Request a movie or TV show",
     },
+    {
+      id: 3,
+      localLink: "https://twitter.com/BananaStandPlex",
+      link: "https://twitter.com/BananaStandPlex",
+      title: "Twitter",
+      description: "Recent news and updates",
+    },
   ];
 
   const authDestinations = [
@@ -58,13 +65,21 @@ const CardContainer = (props) => {
     },
     {
       id: 6,
-      localLink: "http://192.168.1.184:9091/",
-      link: "http://192.168.1.184:9091/",
-      title: "Transmission",
+      localLink: "http://192.168.1.184:8112/",
+      link: "http://192.168.1.184:8112/",
+      title: "Deluge",
       description: "Check the status of your downloads",
     },
+    {
+      id: 7,
+      localLink: "https://twitter.com/BananaStandPlex",
+      link: "https://twitter.com/BananaStandPlex",
+      title: "Twitter",
+      description: "Recent news and updates",
+    },
   ];
-  if (props.content === "auth") {
+
+  if (props.admin) {
     return (
       <div className={styles.grid}>
         {authDestinations.map((dest) => (
